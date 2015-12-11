@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>vcdpLogin</class>
+ <widget class="QWidget" name="vcdpLogin">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>330</width>
+    <height>146</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>vcdpLogin</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>9</y>
+     <width>48</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>服务器：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>9</y>
+     <width>36</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>端口：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>35</y>
+     <width>48</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>用户ID：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>61</y>
+     <width>60</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>用户密码：</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="serverLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>75</x>
+     <y>9</y>
+     <width>99</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="portLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>222</x>
+     <y>9</y>
+     <width>99</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="userLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>75</x>
+     <y>35</y>
+     <width>99</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="pwdLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>75</x>
+     <y>61</y>
+     <width>99</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="herCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>75</x>
+     <y>87</y>
+     <width>59</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Hermit</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="loginBtn">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>110</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>登录</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="closeBtn">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>110</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="message">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>85</y>
+     <width>161</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>message</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="offLoginBtn">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>110</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>离线登陆</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>loginBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>vcdpLogin</receiver>
+   <slot>loginBtn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>181</x>
+     <y>118</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>221</x>
+     <y>105</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>closeBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>vcdpLogin</receiver>
+   <slot>OnClickCloseBtn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>271</x>
+     <y>121</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>317</x>
+     <y>114</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>offLoginBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>vcdpLogin</receiver>
+   <slot>OnOffLoginBtn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>82</x>
+     <y>119</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>44</x>
+     <y>117</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slot1()</slot>
+  <slot>loginBtn()</slot>
+  <slot>OnClickCloseBtn()</slot>
+  <slot>OnOffLoginBtn()</slot>
+ </slots>
+</ui>

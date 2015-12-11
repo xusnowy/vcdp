@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>vcdpMainClass</class>
+ <widget class="QMainWindow" name="vcdpMainClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>823</width>
+    <height>617</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>vcdpMain</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="20,1">
+    <item>
+     <layout class="QHBoxLayout" name="mainLayout" stretch="5">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QWidget" name="widgetMain" native="true">
+          <layout class="QGridLayout" name="gridLayout"/>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QPushButton" name="pushButton_6">
+        <property name="text">
+         <string>拨号盘</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="tempMet">
+        <property name="text">
+         <string>临时会议</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="localVedio">
+        <property name="text">
+         <string>打开视频</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_8">
+        <property name="text">
+         <string>强拆</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_10">
+        <property name="text">
+         <string>按键定制</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>823</width>
+     <height>23</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="vcdpmain.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>tempMet</sender>
+   <signal>clicked()</signal>
+   <receiver>vcdpMainClass</receiver>
+   <slot>OnClickTempMetBtn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>142</x>
+     <y>575</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>166</x>
+     <y>556</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>localVedio</sender>
+   <signal>clicked()</signal>
+   <receiver>vcdpMainClass</receiver>
+   <slot>OnClickLocalVedio()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>225</x>
+     <y>566</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>249</x>
+     <y>567</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OnClickTempMetBtn()</slot>
+  <slot>OnClickLocalVedio()</slot>
+  <slot>OnClickUserMenber()</slot>
+  <slot>OnClickVedioDisplay()</slot>
+  <slot>OnClickGisDisplay()</slot>
+ </slots>
+</ui>
