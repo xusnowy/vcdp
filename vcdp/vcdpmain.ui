@@ -31,7 +31,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QPushButton" name="pushButton_6">
+       <widget class="QPushButton" name="dialerBtn">
         <property name="text">
          <string>拨号盘</string>
         </property>
@@ -54,7 +54,7 @@
       <item>
        <widget class="QPushButton" name="pushButton_8">
         <property name="text">
-         <string>强拆</string>
+         <string>退出会议</string>
         </property>
        </widget>
       </item>
@@ -139,6 +139,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>dialerBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>vcdpMainClass</receiver>
+   <slot>OnClickDialerBtn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>54</x>
+     <y>571</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>82</x>
+     <y>554</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_8</sender>
+   <signal>clicked()</signal>
+   <receiver>vcdpMainClass</receiver>
+   <slot>OnClickQuitMet()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>317</x>
+     <y>573</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>331</x>
+     <y>577</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>OnClickTempMetBtn()</slot>
@@ -146,5 +178,7 @@
   <slot>OnClickUserMenber()</slot>
   <slot>OnClickVedioDisplay()</slot>
   <slot>OnClickGisDisplay()</slot>
+  <slot>OnClickDialerBtn()</slot>
+  <slot>OnClickQuitMet()</slot>
  </slots>
 </ui>

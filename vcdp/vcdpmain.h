@@ -16,6 +16,7 @@
 #include "ui_vcdpmain.h"
 #include "vcdplogin.h"
 #include "vcdpusertab.h"
+#include "vcdpdialer.h"
 #pragma execution_character_set("utf-8")
 class vcdpMain : public QMainWindow,public KSYSSessionEvent, public KIMSSessionEvent, public IIDXCoreNotify, public IMainCtrl
 
@@ -31,6 +32,7 @@ public:
 	void InitToolBar();//初始化工具栏
 	void InitLeftUserTreeView();//初始化用户树
 	void InitMainView();//初始化主视图
+	
 public:
 	QToolButton *q_HideView;//隐藏按钮
 	QToolButton *q_UserMember;//用户按键区
@@ -47,8 +49,12 @@ protected:
 	std::string m_strUserID;//用户ID
 	std::string m_strPassword;//用户密码
 	std::string m_strStatus;//登录状态
+public slots:
+	void receiveNum(const QString &numEdit);
 private slots:
+	void OnClickDialerBtn();//拨号盘
 	void OnClickTempMetBtn();//创建临时会场
+	void OnClickQuitMet();//退出会场
 	void OnClickLocalVedio();//打开本地视频
 	void OnClickUserMenber();//用户按键区
 	void OnClickVedioDisplay();//显示视频
@@ -228,6 +234,7 @@ private:
 	Ui::vcdpMainClass ui;
 	QTabWidget *userTabWidget;
 	//std::string&	m_strUserID;
+	
 	std::string    m_strSessionID;
 	IIDXCore*		m_pIDXCore;			// IDXCore
 	bool			m_bOwner;			// 是否是我创建的会议

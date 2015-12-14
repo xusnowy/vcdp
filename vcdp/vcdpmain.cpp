@@ -9,6 +9,7 @@ vcdpMain::vcdpMain(QWidget *parent)
 	, m_nTMSubType(0)
 	, m_strSessionID(std::string(""))
 	, m_bUserTreeView(true)
+	, m_nCurRoomStatus(ROOM_STATUS_NONE)
 {
 	ui.setupUi(this);
 	m_LoginUi = new VcdpLogin();
@@ -83,9 +84,9 @@ void vcdpMain::InitLeftUserTreeView()
 void vcdpMain::InitMainView()
 {
 	//主显示区域
-	m_TabWidget = new VcdpUserTab(this);
+	/*m_TabWidget = new VcdpUserTab(this);
 	m_TabWidget->setObjectName(QStringLiteral("tabWidget"));
-	ui.widgetMain->layout()->addWidget(m_TabWidget);
+	ui.widgetMain->layout()->addWidget(m_TabWidget);*/
 }
 void vcdpMain::OnCloseDockUserView(bool isOk)
 {
@@ -117,6 +118,27 @@ void vcdpMain::OnClickHideView()
 	
 
 }
+//拨号盘显示
+void vcdpMain::OnClickDialerBtn()
+{
+	VcdpDialer *test;
+	test = new VcdpDialer;
+	connect(test, SIGNAL(sendNum(QString)), this, SLOT(receiveNum(QString)));
+	test->hide();
+	test->setWindowFlags(Qt::WindowStaysOnTopHint);
+	test->show();
+}
+
+//加入会场
+void vcdpMain::receiveNum(const QString &numEdit)
+{
+	if (m_pIDXCore == NULL)
+	{
+		return;
+	}
+	m_pIDXCore->InviteUserIntoMeeting(numEdit.toStdString(), m_strSessionID, false, true);
+}
+
 //登录服务器
 void vcdpMain::DoServerConnect(const std::string& strServerAddr, unsigned short usServerPort, const std::string& strUserID, const std::string& strPassword, const std::string& strStatus)
 {
@@ -327,6 +349,15 @@ void vcdpMain::OnLogin(int nErrCode, const std::string& strModuleString)
 
 }
 
+void vcdpMain::OnClickQuitMet()
+{
+	if (m_pIDXCore == NULL)
+	{
+		return;
+	}
+
+	m_pIDXCore->ExitMeeting(true);
+}
 //---------------------------------------------------------------------------------------
 void vcdpMain::OnLogout(int nErrCode)
 {
@@ -352,7 +383,7 @@ void vcdpMain::OnEnterRoom(unsigned int errcode, const std::string& errText, con
 
 	if (m_bOwner)
 	{
-		m_pIDXCore->AppointTempPresider(GetIMSSession().GetUserID(), true);
+		//m_pIDXCore->AppointTempPresider(GetIMSSession().GetUserID(), true);
 	}
 
 	m_pIDXCore->SetMainWnd(this);
@@ -392,11 +423,11 @@ void vcdpMain::OnInviteIntoMeeting(const std::string& strDomain, const std::stri
 	{
 		return;
 	}
-#if 0
-	CString csRoomID;
+
+	QString csRoomID;
 	string newRoomId = strRoomID;
 	csRoomID = strRoomID.c_str();
-	int nPos = csRoomID.ReverseFind('@');
+	int nPos = csRoomID.indexOf('@');
 	if (nPos <= 0)
 	{
 		newRoomId = strRoomID + "@" + strDomain;
@@ -405,7 +436,7 @@ void vcdpMain::OnInviteIntoMeeting(const std::string& strDomain, const std::stri
 	// m_pIDXCore->RejectInvitation(m_strInviterDomain, m_szInviteRoomID, m_strInviterNodeID);
 	// 接受入会
 	m_pIDXCore->AcceptInvitation(strDomain, newRoomId, strPassword);
-#endif //
+
 }
 
 void vcdpMain::SetCurRoomStatus(int nStatus) //0:无，1：在会议，2：在AView;

@@ -37,7 +37,7 @@ public:
     QWidget *widgetMain;
     QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout_3;
-    QPushButton *pushButton_6;
+    QPushButton *dialerBtn;
     QPushButton *tempMet;
     QPushButton *localVedio;
     QPushButton *pushButton_8;
@@ -83,10 +83,10 @@ public:
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        pushButton_6 = new QPushButton(centralWidget);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        dialerBtn = new QPushButton(centralWidget);
+        dialerBtn->setObjectName(QStringLiteral("dialerBtn"));
 
-        horizontalLayout_3->addWidget(pushButton_6);
+        horizontalLayout_3->addWidget(dialerBtn);
 
         tempMet = new QPushButton(centralWidget);
         tempMet->setObjectName(QStringLiteral("tempMet"));
@@ -132,6 +132,8 @@ public:
         retranslateUi(vcdpMainClass);
         QObject::connect(tempMet, SIGNAL(clicked()), vcdpMainClass, SLOT(OnClickTempMetBtn()));
         QObject::connect(localVedio, SIGNAL(clicked()), vcdpMainClass, SLOT(OnClickLocalVedio()));
+        QObject::connect(dialerBtn, SIGNAL(clicked()), vcdpMainClass, SLOT(OnClickDialerBtn()));
+        QObject::connect(pushButton_8, SIGNAL(clicked()), vcdpMainClass, SLOT(OnClickQuitMet()));
 
         QMetaObject::connectSlotsByName(vcdpMainClass);
     } // setupUi
@@ -139,10 +141,10 @@ public:
     void retranslateUi(QMainWindow *vcdpMainClass)
     {
         vcdpMainClass->setWindowTitle(QApplication::translate("vcdpMainClass", "vcdpMain", 0));
-        pushButton_6->setText(QApplication::translate("vcdpMainClass", "\346\213\250\345\217\267\347\233\230", 0));
+        dialerBtn->setText(QApplication::translate("vcdpMainClass", "\346\213\250\345\217\267\347\233\230", 0));
         tempMet->setText(QApplication::translate("vcdpMainClass", "\344\270\264\346\227\266\344\274\232\350\256\256", 0));
         localVedio->setText(QApplication::translate("vcdpMainClass", "\346\211\223\345\274\200\350\247\206\351\242\221", 0));
-        pushButton_8->setText(QApplication::translate("vcdpMainClass", "\345\274\272\346\213\206", 0));
+        pushButton_8->setText(QApplication::translate("vcdpMainClass", "\351\200\200\345\207\272\344\274\232\350\256\256", 0));
         pushButton_10->setText(QApplication::translate("vcdpMainClass", "\346\214\211\351\224\256\345\256\232\345\210\266", 0));
     } // retranslateUi
 

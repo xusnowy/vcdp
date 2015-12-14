@@ -68,6 +68,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vcdpusertab.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="vcdpdialer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vcdpdialer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vcdpdialer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="vcdpmain.h">
@@ -88,6 +97,12 @@
     <CustomBuild Include="vcdpusertab.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="vcdpdialer.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="vcdpdialer.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_vcdpmain.h">
@@ -97,6 +112,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vcdplogin.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vcdpdialer.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
