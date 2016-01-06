@@ -18,10 +18,15 @@
     <item>
      <layout class="QHBoxLayout" name="mainLayout" stretch="5">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="2,1">
         <item>
          <widget class="QWidget" name="widgetMain" native="true">
           <layout class="QGridLayout" name="gridLayout"/>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widgetMet" native="true">
+          <layout class="QGridLayout" name="gridLayout_2"/>
          </widget>
         </item>
        </layout>
@@ -29,36 +34,36 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
        <widget class="QPushButton" name="dialerBtn">
         <property name="text">
          <string>拨号盘</string>
         </property>
        </widget>
       </item>
-      <item>
+      <item row="0" column="1">
        <widget class="QPushButton" name="tempMet">
         <property name="text">
          <string>临时会议</string>
         </property>
        </widget>
       </item>
-      <item>
+      <item row="0" column="2">
        <widget class="QPushButton" name="localVedio">
         <property name="text">
          <string>打开视频</string>
         </property>
        </widget>
       </item>
-      <item>
+      <item row="0" column="3">
        <widget class="QPushButton" name="pushButton_8">
         <property name="text">
          <string>退出会议</string>
         </property>
        </widget>
       </item>
-      <item>
+      <item row="0" column="4">
        <spacer name="horizontalSpacer_2">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -71,10 +76,30 @@
         </property>
        </spacer>
       </item>
-      <item>
+      <item row="0" column="5">
        <widget class="QPushButton" name="pushButton_10">
         <property name="text">
          <string>按键定制</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="7">
+       <widget class="QPushButton" name="metDisplay">
+        <property name="text">
+         <string>会议显示</string>
         </property>
        </widget>
       </item>
@@ -171,6 +196,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>metDisplay</sender>
+   <signal>clicked()</signal>
+   <receiver>vcdpMainClass</receiver>
+   <slot>OnClickMetDisplay()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>760</x>
+     <y>568</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>752</x>
+     <y>553</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>OnClickTempMetBtn()</slot>
@@ -180,5 +221,6 @@
   <slot>OnClickGisDisplay()</slot>
   <slot>OnClickDialerBtn()</slot>
   <slot>OnClickQuitMet()</slot>
+  <slot>OnClickMetDisplay()</slot>
  </slots>
 </ui>

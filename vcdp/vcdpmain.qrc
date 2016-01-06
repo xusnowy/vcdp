@@ -1,4 +1,6 @@
 <RCC>
-    <qresource prefix="vcdpMain">
+    <qresource prefix="/vcdpMain">
+        <file>images/iptel.jpg</file>
+        <file>images/1.png</file>
     </qresource>
 </RCC>

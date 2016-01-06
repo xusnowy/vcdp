@@ -1,5 +1,6 @@
 #include "vcdpmain.h"
 #include <QDockWidget>
+#include <QDesktopWidget>
 vcdpMain::vcdpMain(QWidget *parent)
 	: QMainWindow(parent)
 	, m_strUserID(std::string(""))
@@ -10,6 +11,7 @@ vcdpMain::vcdpMain(QWidget *parent)
 	, m_strSessionID(std::string(""))
 	, m_bUserTreeView(true)
 	, m_nCurRoomStatus(ROOM_STATUS_NONE)
+	, m_bMetTabView(true)
 {
 	ui.setupUi(this);
 	m_LoginUi = new VcdpLogin();
@@ -18,6 +20,7 @@ vcdpMain::vcdpMain(QWidget *parent)
 	InitToolBar();
 	InitLeftUserTreeView();
 	InitMainView();
+	OnClickMetDisplay();
 	//m_TabWidget->setGeometry(QRect(130, 30, 127, 80));
 	//m_TabWidget->resize(ui.widgetMain->size());
 	//m_TabWidget->showMaximized();
@@ -76,17 +79,29 @@ void vcdpMain::InitLeftUserTreeView()
 {
 	q_DockUserView = new QDockWidget(this);
 	q_DockUserView->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetFloatable);
-	q_UserTreeView = new QTreeView(this);
-	q_DockUserView->setWidget(q_UserTreeView);
+	//q_UserTreeView = new QTreeView(this);
+	VcdpTreeView *test = new VcdpTreeView(q_DockUserView);
+	q_DockUserView->setWidget(test);
+	connect(test, SIGNAL(sendNumtoMet(QString)), this, SLOT(receiveNum(QString)));
 	connect(q_DockUserView, SIGNAL(visibilityChanged(bool)), this, SLOT(OnCloseDockUserView(bool)));
 	this->addDockWidget(Qt::LeftDockWidgetArea, q_DockUserView);
 }
 void vcdpMain::InitMainView()
 {
 	//主显示区域
-	/*m_TabWidget = new VcdpUserTab(this);
+
+	m_TabWidget = new VcdpUserTab(this);
+	m_TabWidget->addUserListMember();
 	m_TabWidget->setObjectName(QStringLiteral("tabWidget"));
-	ui.widgetMain->layout()->addWidget(m_TabWidget);*/
+	ui.widgetMain->layout()->addWidget(m_TabWidget);
+	m_userDialer = new VcdpDialer;//初始化拨号盘
+	m_TabMetWidget = new VcdpUserTab(this);
+	m_TabMetWidget->addMetListMember();
+	m_TabMetWidget->setObjectName(QStringLiteral("tabMetWidget"));
+	ui.widgetMet->layout()->addWidget(m_TabMetWidget);
+	ui.verticalLayout_2->setStretch(0, 2);
+	ui.verticalLayout_2->setStretch(1, 1);
+	ui.widgetMet->hide();
 }
 void vcdpMain::OnCloseDockUserView(bool isOk)
 {
@@ -121,12 +136,15 @@ void vcdpMain::OnClickHideView()
 //拨号盘显示
 void vcdpMain::OnClickDialerBtn()
 {
-	VcdpDialer *test;
-	test = new VcdpDialer;
-	connect(test, SIGNAL(sendNum(QString)), this, SLOT(receiveNum(QString)));
-	test->hide();
-	test->setWindowFlags(Qt::WindowStaysOnTopHint);
-	test->show();
+	QDesktopWidget *desk = QApplication::desktop();
+	int wd = desk->width();
+	int ht = desk->height();
+	connect(m_userDialer, SIGNAL(sendNum(QString)), this, SLOT(receiveNum(QString)));
+	m_userDialer->hide();
+	m_userDialer->setWindowFlags(Qt::WindowStaysOnTopHint);
+	m_userDialer->setFixedSize(330, 330);
+	m_userDialer->move(0, (ht - (m_userDialer->height())*1.4));
+	m_userDialer->show();
 }
 
 //加入会场
@@ -138,7 +156,21 @@ void vcdpMain::receiveNum(const QString &numEdit)
 	}
 	m_pIDXCore->InviteUserIntoMeeting(numEdit.toStdString(), m_strSessionID, false, true);
 }
+//临时会场的显示
+void vcdpMain::OnClickMetDisplay()
+{
 
+if (m_bMetTabView)
+	{
+		ui.widgetMet->hide();
+	}
+	else
+	{
+		ui.widgetMet->show();
+	}
+	m_bMetTabView = !m_bMetTabView;
+
+}
 //登录服务器
 void vcdpMain::DoServerConnect(const std::string& strServerAddr, unsigned short usServerPort, const std::string& strUserID, const std::string& strPassword, const std::string& strStatus)
 {
@@ -383,7 +415,7 @@ void vcdpMain::OnEnterRoom(unsigned int errcode, const std::string& errText, con
 
 	if (m_bOwner)
 	{
-		//m_pIDXCore->AppointTempPresider(GetIMSSession().GetUserID(), true);
+		m_pIDXCore->AppointTempPresider(GetIMSSession().GetUserID(), true);
 	}
 
 	m_pIDXCore->SetMainWnd(this);

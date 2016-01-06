@@ -115,5 +115,5 @@ void VcdpDialer::OnClickInviteMetBtn()
 }
 void VcdpDialer::OnClickCloseDialer()
 {
-
+	close();
 }

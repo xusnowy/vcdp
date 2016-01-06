@@ -2,7 +2,9 @@
 #define VCDPUSERTAB_H
 
 #include <QTabWidget>
+#include "vcdpuserlist.h"
 #pragma execution_character_set("utf-8")
+
 class VcdpUserTab : public QTabWidget
 {
 	Q_OBJECT
@@ -10,7 +12,10 @@ class VcdpUserTab : public QTabWidget
 public:
 	VcdpUserTab(QWidget *parent);
 	~VcdpUserTab();
-
+	void addUserListMember();
+	void addMetListMember();
+public slots:
+	void test();
 private:
 	
 };

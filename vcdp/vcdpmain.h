@@ -17,6 +17,7 @@
 #include "vcdplogin.h"
 #include "vcdpusertab.h"
 #include "vcdpdialer.h"
+#include "vcdptreeview.h"
 #pragma execution_character_set("utf-8")
 class vcdpMain : public QMainWindow,public KSYSSessionEvent, public KIMSSessionEvent, public IIDXCoreNotify, public IMainCtrl
 
@@ -39,11 +40,14 @@ public:
 	QToolButton *q_VedioDisplay;//视频区
 	QToolButton *q_GisDisplay;//GIS
 	QToolButton *q_ConifgDisply;//配置文件
-	QTreeView *q_UserTreeView;
-	QDockWidget *q_DockUserView;
+	QTreeView *q_UserTreeView;//用户树
+	QDockWidget *q_DockUserView;//用户数显示区域
 protected:
+	VcdpDialer *m_userDialer;
+	QTabWidget *userTabWidget;
 	VcdpLogin *m_LoginUi;//用户登录
 	VcdpUserTab *m_TabWidget;//用户按键区
+	VcdpUserTab *m_TabMetWidget;//临时会议区
 	std::string	m_strServerAddr;//服务器IP
 	unsigned short m_usServerPort;//服务器端口
 	std::string m_strUserID;//用户ID
@@ -60,8 +64,10 @@ private slots:
 	void OnClickVedioDisplay();//显示视频
 	void OnClickHideView();//隐藏树形控件
 	void OnCloseDockUserView(bool isOk);//浮动属性隐藏
+	void OnClickMetDisplay();//临时会场的显示
 private:
 	bool m_bUserTreeView;//用户树形显示区域
+	bool m_bMetTabView;//临时会议显示隐藏
 public:
 
 	//-----------------------------------------------------
@@ -232,7 +238,7 @@ public:
 	//-----------------------------------------------------
 private:
 	Ui::vcdpMainClass ui;
-	QTabWidget *userTabWidget;
+	
 	//std::string&	m_strUserID;
 	
 	std::string    m_strSessionID;

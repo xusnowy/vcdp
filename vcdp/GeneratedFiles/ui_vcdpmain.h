@@ -36,13 +36,17 @@ public:
     QVBoxLayout *verticalLayout_2;
     QWidget *widgetMain;
     QGridLayout *gridLayout;
-    QHBoxLayout *horizontalLayout_3;
+    QWidget *widgetMet;
+    QGridLayout *gridLayout_2;
+    QGridLayout *gridLayout_3;
     QPushButton *dialerBtn;
     QPushButton *tempMet;
     QPushButton *localVedio;
     QPushButton *pushButton_8;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *pushButton_10;
+    QSpacerItem *horizontalSpacer;
+    QPushButton *metDisplay;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -73,6 +77,17 @@ public:
 
         verticalLayout_2->addWidget(widgetMain);
 
+        widgetMet = new QWidget(centralWidget);
+        widgetMet->setObjectName(QStringLiteral("widgetMet"));
+        gridLayout_2 = new QGridLayout(widgetMet);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+
+        verticalLayout_2->addWidget(widgetMet);
+
+        verticalLayout_2->setStretch(0, 2);
+        verticalLayout_2->setStretch(1, 1);
 
         mainLayout->addLayout(verticalLayout_2);
 
@@ -80,40 +95,49 @@ public:
 
         verticalLayout->addLayout(mainLayout);
 
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        gridLayout_3 = new QGridLayout();
+        gridLayout_3->setSpacing(6);
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         dialerBtn = new QPushButton(centralWidget);
         dialerBtn->setObjectName(QStringLiteral("dialerBtn"));
 
-        horizontalLayout_3->addWidget(dialerBtn);
+        gridLayout_3->addWidget(dialerBtn, 0, 0, 1, 1);
 
         tempMet = new QPushButton(centralWidget);
         tempMet->setObjectName(QStringLiteral("tempMet"));
 
-        horizontalLayout_3->addWidget(tempMet);
+        gridLayout_3->addWidget(tempMet, 0, 1, 1, 1);
 
         localVedio = new QPushButton(centralWidget);
         localVedio->setObjectName(QStringLiteral("localVedio"));
 
-        horizontalLayout_3->addWidget(localVedio);
+        gridLayout_3->addWidget(localVedio, 0, 2, 1, 1);
 
         pushButton_8 = new QPushButton(centralWidget);
         pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
 
-        horizontalLayout_3->addWidget(pushButton_8);
+        gridLayout_3->addWidget(pushButton_8, 0, 3, 1, 1);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_3->addItem(horizontalSpacer_2);
+        gridLayout_3->addItem(horizontalSpacer_2, 0, 4, 1, 1);
 
         pushButton_10 = new QPushButton(centralWidget);
         pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
 
-        horizontalLayout_3->addWidget(pushButton_10);
+        gridLayout_3->addWidget(pushButton_10, 0, 5, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_3->addItem(horizontalSpacer, 0, 6, 1, 1);
+
+        metDisplay = new QPushButton(centralWidget);
+        metDisplay->setObjectName(QStringLiteral("metDisplay"));
+
+        gridLayout_3->addWidget(metDisplay, 0, 7, 1, 1);
 
 
-        verticalLayout->addLayout(horizontalLayout_3);
+        verticalLayout->addLayout(gridLayout_3);
 
         verticalLayout->setStretch(0, 20);
         verticalLayout->setStretch(1, 1);
@@ -134,6 +158,7 @@ public:
         QObject::connect(localVedio, SIGNAL(clicked()), vcdpMainClass, SLOT(OnClickLocalVedio()));
         QObject::connect(dialerBtn, SIGNAL(clicked()), vcdpMainClass, SLOT(OnClickDialerBtn()));
         QObject::connect(pushButton_8, SIGNAL(clicked()), vcdpMainClass, SLOT(OnClickQuitMet()));
+        QObject::connect(metDisplay, SIGNAL(clicked()), vcdpMainClass, SLOT(OnClickMetDisplay()));
 
         QMetaObject::connectSlotsByName(vcdpMainClass);
     } // setupUi
@@ -146,6 +171,7 @@ public:
         localVedio->setText(QApplication::translate("vcdpMainClass", "\346\211\223\345\274\200\350\247\206\351\242\221", 0));
         pushButton_8->setText(QApplication::translate("vcdpMainClass", "\351\200\200\345\207\272\344\274\232\350\256\256", 0));
         pushButton_10->setText(QApplication::translate("vcdpMainClass", "\346\214\211\351\224\256\345\256\232\345\210\266", 0));
+        metDisplay->setText(QApplication::translate("vcdpMainClass", "\344\274\232\350\256\256\346\230\276\347\244\272", 0));
     } // retranslateUi
 
 };

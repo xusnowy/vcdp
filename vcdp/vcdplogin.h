@@ -1,6 +1,6 @@
 #ifndef VCDPLOGIN_H
 #define VCDPLOGIN_H
-
+//vcdp login
 #include <QWidget>
 #include "ui_vcdplogin.h"
 #include <QMessageBox>
